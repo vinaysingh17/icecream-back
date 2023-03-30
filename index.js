@@ -18,7 +18,9 @@ const authRoutes = require("./Routes/AuthenticationRoutes");
 const MainEnquiry = require("./Routes/Enquiry routes/Main.enquiry.routes");
 const ProductEnquiry = require("./Routes/Enquiry routes/Product.enquiry.routes");
 const MemberEnquiry = require("./Routes/Enquiry routes/MemberEnquiry.routes");
+const Package = require("./Routes/Packages/Package.routes");
 const Product = require("./Routes/Product.routes");
+const Advertisement = require("./Routes/Advertisement.routes");
 
 const userRoutes = require("./Routes/UserRoutes");
 const BlogRoutes = require("./Routes/BlogRoutes");
@@ -65,6 +67,8 @@ app.use("/enquiry/main", MainEnquiry);
 app.use("/enquiry/product", ProductEnquiry);
 app.use("/enquiry/member", MemberEnquiry);
 app.use("/product", Product);
+app.use("/package", Package);
+app.use("/advertisement", Advertisement);
 
 app.use("/auth", authRoutes);
 app.use("/user", userRoutes);
