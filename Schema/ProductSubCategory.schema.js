@@ -11,7 +11,7 @@ const userdata = new mongoose.Schema(
     image: String,
     parent: {
       type: ObjectId,
-      ref: "business_category",
+      ref: "product_category",
       required: [true, "Busness Category is required"],
     },
   },
