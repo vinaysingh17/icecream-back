@@ -21,7 +21,7 @@ const userdata = new mongoose.Schema(
     state: String,
     city: String,
     pinCode: Number,
-    email: { type: String },
+    email: { type: String, unique: true },
     phone: {
       type: Number,
     },
