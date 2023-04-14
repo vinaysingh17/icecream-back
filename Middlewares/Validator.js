@@ -32,7 +32,7 @@ const validateField = (fields, res) => {
   for (const key in fields) {
     if (Object.hasOwnProperty.call(fields, key)) {
       const element = fields[key];
-      if (!isValid(element)) {
+      if (!isValid(element) && valid) {
         SendFail(res, key + " is required");
         valid = false;
       }

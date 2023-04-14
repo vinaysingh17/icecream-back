@@ -8,7 +8,10 @@ const userdata = new mongoose.Schema(
       required: [true, "Number (number) is required"],
       unique: true,
     },
+    name: String,
     user: { type: ObjectId, ref: "user" },
+    // user:
+    countEmployee: Number,
     description: String,
     status: {
       type: String,

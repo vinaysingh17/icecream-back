@@ -21,6 +21,7 @@ const MemberEnquiry = require("./Routes/Enquiry routes/MemberEnquiry.routes");
 const Package = require("./Routes/Packages/Package.routes");
 const Product = require("./Routes/Product.routes");
 const Advertisement = require("./Routes/Advertisement.routes");
+const NewsRoutes = require("./Routes/News.Routes.js");
 
 const userRoutes = require("./Routes/UserRoutes");
 const BlogRoutes = require("./Routes/BlogRoutes");
@@ -69,6 +70,7 @@ app.use("/enquiry/member", MemberEnquiry);
 app.use("/product", Product);
 app.use("/package", Package);
 app.use("/advertisement", Advertisement);
+app.use("/News", NewsRoutes);
 
 app.use("/auth", authRoutes);
 app.use("/user", userRoutes);

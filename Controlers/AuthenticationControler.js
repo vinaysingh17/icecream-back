@@ -52,6 +52,7 @@ const userLogin = async function (req, res) {
     }
 
     const userData = await User.findOne({ email });
+    
 
     if (!userData) {
       return res.status(401).send({

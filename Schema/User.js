@@ -25,7 +25,15 @@ const userdata = new mongoose.Schema(
     phone: {
       type: Number,
     },
-    deskId: Number,
+    deskId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "desk",
+      default: null,
+    },
+    deskNumber: {
+      type: Number,
+      default: 0,
+    },
     role: {
       type: String,
       enum: ["employee", "member", "admin", "submember", "guest"],
