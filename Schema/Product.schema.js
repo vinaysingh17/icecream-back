@@ -18,6 +18,22 @@ const userdata = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "product_subcategory",
     },
+    uom: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "uom",
+    },
+    secUom: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "secondary-uom",
+    },
+    mrp: Number,
+    hsn_code: String,
+    gst_code: String,
+    description: String,
+    isDeleted: {
+      type: Boolean,
+      default: false,
+    },
     image: String,
   },
   { timestamps: true }

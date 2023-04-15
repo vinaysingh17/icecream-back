@@ -1,25 +1,55 @@
 const mongoose = require("mongoose");
 const ObjectId = mongoose.Schema.Types.ObjectId;
+const strReq = { type: String, required: true };
+const numReq = { type: Number, required: true };
 const userdata = new mongoose.Schema(
   {
-    firstName: String,
-    lastName: String,
-    businessCategory: {
-      type: ObjectId,
-      ref: "business_category",
+    firstName: {
+      type: String,
+      required: [true, "First Name is required"],
     },
-    productCategory: {
-      type: ObjectId,
-      ref: "product_category",
+    lastName: {
+      type: String,
+      required: [true, "Last Name is required"],
     },
+    shortName: String,
+    image: String,
+    organizationName: {
+      type: String,
+      required: [true, "Organization name is requried"],
+    },
+    mobile2: Number,
+    address1: { type: String, required: [true, "Address 1 is required"] },
+    address2: String,
+    address3: String,
+    country: strReq,
+    state: strReq,
+    city: strReq,
+    landMark: strReq,
+    gstNumber: strReq,
+    employeeNumber: numReq,
+    turnover: numReq,
+    businessCategory: [
+      {
+        type: ObjectId,
+        ref: "business_category",
+      },
+    ],
+    businessSubCategory: [
+      {
+        type: ObjectId,
+        ref: "product_category",
+      },
+    ],
     password: String,
-    businessSubCategory: {
-      type: ObjectId,
-      ref: "product_category",
-    },
     country: String,
     state: String,
     city: String,
+    gstImage: String,
+    panImage: String,
+    companyBrochure: String,
+    panNumber: String,
+    typeOfCompany: String,
     pinCode: Number,
     email: { type: String, unique: true },
     phone: {
