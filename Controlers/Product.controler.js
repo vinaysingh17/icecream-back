@@ -1,6 +1,7 @@
 const validator = require("../Middlewares/Validator");
 const { SendSuccess, SendError, SendFail } = require("../Middlewares/Response");
 const ProductSchema = require("../Schema/Product.schema");
+const uploadOnCloudinary = require("../Middlewares/Cloudinary");
 
 const create = async (req, res, next) => {
   const { name } = req.body;
@@ -10,11 +11,12 @@ const create = async (req, res, next) => {
     if (!req.files.image.length) {
       return SendFail(res, "Image is required");
     }
+    let uri = await uploadOnCloudinary(req.files.image[0]);
     // return null;
     if (!validator.validateField(fields, res)) return null;
     const savedData = await ProductSchema.create({
       ...req.body,
-      image: req.files.image[0].filename,
+      image: uri,
     });
 
     SendSuccess(res, "Category Created", savedData);

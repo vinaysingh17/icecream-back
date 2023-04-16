@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const ObjectId = mongoose.Schema.Types.ObjectId;
-const strReq = { type: String, required: true };
-const numReq = { type: Number, required: true };
+const strReq = { type: String };
+const numReq = { type: Number };
 const userdata = new mongoose.Schema(
   {
     firstName: {
@@ -16,10 +16,10 @@ const userdata = new mongoose.Schema(
     image: String,
     organizationName: {
       type: String,
-      required: [true, "Organization name is requried"],
+      // required: [true, "Organization name is requried"],
     },
     mobile2: Number,
-    address1: { type: String, required: [true, "Address 1 is required"] },
+    address1: { type: String },
     address2: String,
     address3: String,
     country: strReq,
@@ -42,17 +42,15 @@ const userdata = new mongoose.Schema(
       },
     ],
     password: String,
-    country: String,
-    state: String,
-    city: String,
-    gstImage: String,
-    panImage: String,
-    companyBrochure: String,
+    gstImage: { type: String, default: null },
+    panImage: { type: String, default: null },
+    companyBrochure: { type: String, default: null },
+    companyLogo: { type: String, default: null },
     panNumber: String,
     typeOfCompany: String,
     pinCode: Number,
     email: { type: String, unique: true },
-    phone: {
+    mobile: {
       type: Number,
     },
     deskId: {

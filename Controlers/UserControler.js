@@ -1,8 +1,9 @@
 const bcrypt = require("bcrypt");
 const { validateUserDetail } = require("../Middlewares/AuthMiddleware");
-const SendError = require("../Middlewares/Response");
+const { SendSuccess, SendError, SendFail } = require("../Middlewares/Response");
 const User = require("../Schema/User");
 const validator = require("../Middlewares/Validator");
+const uploadOnCloudinary = require("../Middlewares/Cloudinary");
 
 const getUser = async (req, res, next) => {
   try {
@@ -20,6 +21,87 @@ const getUser = async (req, res, next) => {
   } catch (e) {
     console.log(e);
     SendError(res, e);
+  }
+};
+const update = async (req, res) => {
+  try {
+    // let user = await User.findById(req.params.id);
+    let data = await User.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    });
+    SendSuccess(res, "User Updated", data);
+  } catch (error) {
+    SendError(res, error);
+  }
+};
+const updateProfile = async (req, res) => {
+  try {
+    // let user = await User.findById(req.params.id);
+    console.log(req.files);
+    if (!req?.files?.image.length) return SendFail(res, "Image is required");
+
+    let { value } = req.body;
+    if (!value)
+      return SendFail(
+        res,
+        "value is required 1 for profile image 2 for gst image 3 for pan image 4 for company Brochure 5 for company logo"
+      );
+    if (value > 5) {
+      return SendFail(res, "value must be less than 6 for profile image,");
+    }
+    let uri = await uploadOnCloudinary(req.files.image[0]);
+    if (value == 1) {
+      let data = await User.findByIdAndUpdate(
+        req.params.id,
+        { image: uri },
+        {
+          new: true,
+        }
+      );
+      SendSuccess(res, "User Profile Updated", data);
+    }
+    if (value == 2) {
+      let data = await User.findByIdAndUpdate(
+        req.params.id,
+        { gstImage: uri },
+        {
+          new: true,
+        }
+      );
+      SendSuccess(res, "GST Updated", data);
+    }
+    if (value == 3) {
+      let data = await User.findByIdAndUpdate(
+        req.params.id,
+        { panImage: uri },
+        {
+          new: true,
+        }
+      );
+      SendSuccess(res, " Pan Image Updated", data);
+    }
+    if (value == 4) {
+      let data = await User.findByIdAndUpdate(
+        req.params.id,
+        { companyBrochure: uri },
+        {
+          new: true,
+        }
+      );
+      SendSuccess(res, "Company Brochure Updated", data);
+    }
+    if (value == 5) {
+      let data = await User.findByIdAndUpdate(
+        req.params.id,
+        { companyLogo: uri },
+        {
+          new: true,
+        }
+      );
+      SendSuccess(res, "Company Logo Updated", data);
+    }
+  } catch (error) {
+    SendError(res, error);
   }
 };
 
@@ -76,6 +158,8 @@ const getUser = async (req, res, next) => {
 // };
 module.exports = {
   getUser,
+  updateProfile,
+  update,
 };
 
 // module.exports = { createUser, userLogin, getUserDetails, updateUserDetails }
