@@ -62,11 +62,13 @@ const Delete = async (req, res, next) => {
 const update = async (req, res, next) => {
   try {
     const { id } = req.params;
+    console.log(req.body);
+
     const data = await AdvertiseMentSchema.findByIdAndUpdate(id, req.body, {
       new: true,
     });
     if (!data) return SendFail(res, "Id not found");
-    SendSuccess(res, "Category Deleted", data);
+    SendSuccess(res, "Category updated", data);
   } catch (e) {
     console.log(e);
     SendError(res, e);

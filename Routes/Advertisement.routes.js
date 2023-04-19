@@ -16,6 +16,6 @@ router.post(
 );
 router.get("/get", read);
 router.delete("/delete/:id", Delete);
-router.patch("/update/:id", update);
+router.put("/update/:id", update);
 
 module.exports = router;
