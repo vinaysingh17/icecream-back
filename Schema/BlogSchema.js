@@ -27,4 +27,4 @@ const userdata = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = new mongoose.model("blog1", userdata);
+module.exports = new mongoose.model("blog", userdata);

@@ -7,14 +7,13 @@ const create = async (req, res, next) => {
   const { number, user } = req.body;
   try {
     let fields = { number, user };
-
     if (!validator.validateField(fields, res)) return null;
     let checkEmployee = await UserSchema.findById(user).populate("deskId");
     if (checkEmployee.deskId) {
       return SendSuccess(
         res,
         "User already assigned in Desk ID " + checkEmployee?.number,
-        checkEmployee
+        checkEmployee``
       );
     }
     // if(checkEmployee)
@@ -39,7 +38,8 @@ const create = async (req, res, next) => {
     SendError(res, e);
   }
 };
-const addEmployee = async (req, res, next) => {
+
+const addMember = async (req, res, next) => {
   const { deskNumber, user, deskId } = req.body;
   try {
     let fields = { deskNumber, user, deskId };
@@ -53,11 +53,9 @@ const addEmployee = async (req, res, next) => {
         checkEmployee
       );
     }
-    // if(checkEmployee)
-
     await DeskSchema.findOneAndUpdate(
       { _id: deskId },
-      { $inc: { countEmployee: 1 } }
+      { $inc: { countMemberNumber: 1 } }
     );
     if (user) {
       await UserSchema.findByIdAndUpdate(
@@ -76,6 +74,7 @@ const addEmployee = async (req, res, next) => {
     SendError(res, e);
   }
 };
+
 const removeEmployee = async (req, res, next) => {
   const { deskNumber, user, deskId } = req.body;
   try {
@@ -94,7 +93,7 @@ const removeEmployee = async (req, res, next) => {
 
     await DeskSchema.findOneAndUpdate(
       { _id: deskId },
-      { $inc: { countEmployee: -1 } }
+      { $inc: { countMemberNumber: -1 } }
     );
     if (user) {
       await UserSchema.findByIdAndUpdate(
@@ -118,7 +117,7 @@ const read = async (req, res, next) => {
   try {
     const data = await DeskSchema.find(req.query)
       .sort({ number: 1 })
-      .populate("user");
+      .populate("members");
 
     SendSuccess(res, "Category Fetched", data);
   } catch (e) {
@@ -156,7 +155,7 @@ module.exports = {
   update,
   Delete,
   removeEmployee,
-  addEmployee,
+  addMember,
 };
 
 // module.exports = { createUser, userLogin, getUserDetails, updateUserDetails }

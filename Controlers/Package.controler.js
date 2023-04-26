@@ -6,6 +6,7 @@ const create = async (req, res, next) => {
   const { name } = req.body;
   try {
     const rand = Math.floor(1000 + Math.random() * 9000);
+    console.log(req.body, "<<<this is req body");
     const savedData = await PackageSchema.create({
       ...req.body,
       code: req.body.name.slice(0, 3) + rand,

@@ -9,9 +9,10 @@ const userdata = new mongoose.Schema(
       unique: true,
     },
     name: String,
-    user: { type: ObjectId, ref: "user" },
+    employee: { type: ObjectId, ref: "user" },
+    members: { type: ObjectId, ref: "user" },
     // user:
-    countEmployee: Number,
+    countMemberNumber: { type: Number, default: 0 },
     description: String,
     status: {
       type: String,

@@ -5,7 +5,8 @@ const userdata = new mongoose.Schema(
   {
     ratePerDay: {
       type: Number,
-      required: true,
+      // required: true,
+      default: 1,
     },
     validFrom: Date,
     validTo: Date,

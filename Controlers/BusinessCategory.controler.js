@@ -26,6 +26,7 @@ const read = async (req, res, next) => {
     SendError(res, e);
   }
 };
+
 const Delete = async (req, res, next) => {
   try {
     const { id } = req.params;
