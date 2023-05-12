@@ -21,6 +21,7 @@ const createBlog = async (req, res, next) => {
   let uri = null;
   if (req?.files?.image?.length > 0) {
     uri = await uploadOnCloudinary(req.files.image[0]);
+    // req.body.image = uri;
   }
   // const uploadedFile = image[0];
 

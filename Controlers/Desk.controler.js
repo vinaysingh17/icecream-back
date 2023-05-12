@@ -19,7 +19,7 @@ const create = async (req, res, next) => {
     // if(checkEmployee)
     const savedData = await DeskSchema.create({
       ...req.body,
-      countEmployee: 1,
+      countMemberNumber: 0,
     });
     if (user) {
       await UserSchema.findByIdAndUpdate(
@@ -32,7 +32,7 @@ const create = async (req, res, next) => {
       );
     }
 
-    SendSuccess(res, "Category Created", savedData);
+    SendSuccess(res, "Desk Created", savedData);
   } catch (e) {
     console.log(e);
     SendError(res, e);
@@ -45,14 +45,14 @@ const addMember = async (req, res, next) => {
     let fields = { deskNumber, user, deskId };
 
     if (!validator.validateField(fields, res)) return null;
-    let checkEmployee = await UserSchema.findById(user).populate("deskId");
-    if (checkEmployee.deskId) {
-      return SendSuccess(
-        res,
-        "User already assigned in Desk ID " + checkEmployee?.deskNumber,
-        checkEmployee
-      );
-    }
+    // let checkEmployee = await UserSchema.findById(user).populate("deskId");
+    // if (checkEmployee.deskId) {
+    //   return SendSuccess(
+    //     res,
+    //     "User already assigned in Desk ID " + checkEmployee?.deskNumber,
+    //     checkEmployee
+    //   );
+    // }
     await DeskSchema.findOneAndUpdate(
       { _id: deskId },
       { $inc: { countMemberNumber: 1 } }
@@ -68,7 +68,7 @@ const addMember = async (req, res, next) => {
       );
     }
 
-    return SendSuccess(res, "Category Created", []);
+    return SendSuccess(res, "Desk Created", []);
   } catch (e) {
     console.log(e);
     SendError(res, e);
@@ -81,15 +81,6 @@ const removeEmployee = async (req, res, next) => {
     let fields = { deskNumber, user, deskId };
 
     if (!validator.validateField(fields, res)) return null;
-    // let checkEmployee = await UserSchema.findById(user).populate("deskId");
-    // if (checkEmployee.deskId) {
-    //   return SendSuccess(
-    //     res,
-    //     "User already assigned in Desk ID " + checkEmployee?.deskNumber,
-    //     checkEmployee
-    //   );
-    // }
-    // if(checkEmployee)
 
     await DeskSchema.findOneAndUpdate(
       { _id: deskId },
@@ -106,7 +97,7 @@ const removeEmployee = async (req, res, next) => {
       );
     }
 
-    return SendSuccess(res, "Category Created", []);
+    return SendSuccess(res, "Desk Created", []);
   } catch (e) {
     console.log(e);
     SendError(res, e);
@@ -116,10 +107,11 @@ const removeEmployee = async (req, res, next) => {
 const read = async (req, res, next) => {
   try {
     const data = await DeskSchema.find(req.query)
+      .populate("employee")
       .sort({ number: 1 })
       .populate("members");
 
-    SendSuccess(res, "Category Fetched", data);
+    SendSuccess(res, "Desk Fetched", data);
   } catch (e) {
     console.log(e);
     SendError(res, e);
@@ -130,7 +122,7 @@ const Delete = async (req, res, next) => {
     const { id } = req.params;
     const data = await DeskSchema.findByIdAndDelete(id);
     if (!data) return SendFail(res, "Id not found");
-    SendSuccess(res, "Category Deleted", data);
+    SendSuccess(res, "Desk Deleted", data);
   } catch (e) {
     console.log(e);
     SendError(res, e);
@@ -143,7 +135,7 @@ const update = async (req, res, next) => {
       new: true,
     });
     if (!data) return SendFail(res, "Id not found");
-    SendSuccess(res, "Category Deleted", data);
+    SendSuccess(res, "Desk Deleted", data);
   } catch (e) {
     console.log(e);
     SendError(res, e);

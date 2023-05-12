@@ -14,6 +14,7 @@ const userdata = new mongoose.Schema(
     // user:
     countMemberNumber: { type: Number, default: 0 },
     description: String,
+    // assigendTo:
     status: {
       type: String,
       enum: ["Active", "Deactive", "Hold", "Block", "Not in use"],

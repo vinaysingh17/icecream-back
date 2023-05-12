@@ -10,7 +10,7 @@ const create = async (req, res, next) => {
     if (!req.files) {
       return SendFail(res, "image is required");
     }
-    if (!req.files.image.length) return SendFail(res, "Image is required");
+    if (!req.files.image.lengtsh) return SendFail(res, "Image is required");
     let images = req.files.image;
     console.log(images, "<<< these are images");
     let sendURI = [];
