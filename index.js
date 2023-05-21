@@ -79,7 +79,7 @@ app.use("/blog", BlogRoutes);
 app.use("/sub-category", SubCAtegory);
 // ------------------------------------------------------
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 8080;
 app.listen(port, () => {
   console.log(`server running at port ${port}`);
 });
