@@ -24,12 +24,13 @@ const CreateUser = async (req, res, next) => {
 
     if (userDetails.role == "member") {
       userDetails.deskId = WelcomeDesk._id;
+      await DeskIDSchema.findOneAndUpdate(
+        { _id: WelcomeDesk._id },
+        { $inc: { countMemberNumber: 1 } }
+      );
     }
     const savedData = await User.create(userDetails);
-    await DeskIDSchema.findOneAndUpdate(
-      { _id: WelcomeDesk._id },
-      { $inc: { countMemberNumber: 1 } }
-    );
+
     res.status(200).send({
       success: true,
       message: "User successfully created",

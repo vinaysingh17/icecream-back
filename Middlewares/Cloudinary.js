@@ -1,11 +1,18 @@
 const cloudinary = require("cloudinary").v2;
 
 // Configuration
+// cloudinary.config({
+//   cloud_name: "djkvwhl4w",
+//   api_key: "188614786747447",
+//   api_secret: "NuIFTBxV8vTTwiUZySsZO-_IEjU",
+// });
+
 cloudinary.config({
-  cloud_name: "djkvwhl4w",
-  api_key: "188614786747447",
-  api_secret: "NuIFTBxV8vTTwiUZySsZO-_IEjU",
+  cloud_name: "ddyb5yir9",
+  api_key: "524146564425286",
+  api_secret: "IeyLRrfcDTq60x3om7EPm8fthmk",
 });
+
 // Upload
 const uploadOnCloudinary = async (file) => {
   try {
