@@ -6,7 +6,7 @@ const cloudinary = require("cloudinary").v2;
 //   api_key: "188614786747447",
 //   api_secret: "NuIFTBxV8vTTwiUZySsZO-_IEjU",
 // });
-
+// ddd
 cloudinary.config({
   cloud_name: "ddyb5yir9",
   api_key: "524146564425286",
