@@ -19,6 +19,7 @@ const MainEnquiry = require("./Routes/Enquiry routes/Main.enquiry.routes");
 const ProductEnquiry = require("./Routes/Enquiry routes/Product.enquiry.routes");
 const MemberEnquiry = require("./Routes/Enquiry routes/MemberEnquiry.routes");
 const Package = require("./Routes/Packages/Package.routes");
+const AdsPackage = require("./Routes/Packages/Advertiesement.Routes.js");
 const Product = require("./Routes/Product.routes");
 const Advertisement = require("./Routes/Advertisement.routes");
 const NewsRoutes = require("./Routes/News.Routes.js");
@@ -69,6 +70,7 @@ app.use("/enquiry/product", ProductEnquiry);
 app.use("/enquiry/member", MemberEnquiry);
 app.use("/product", Product);
 app.use("/package", Package);
+app.use("/ads-package", AdsPackage);
 app.use("/advertisement", Advertisement);
 app.use("/News", NewsRoutes);
 
@@ -79,7 +81,7 @@ app.use("/blog", BlogRoutes);
 app.use("/sub-category", SubCAtegory);
 // ------------------------------------------------------
 
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 5000;
 app.listen(port, () => {
   console.log(`server running at port ${port}`);
 });

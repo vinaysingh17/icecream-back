@@ -12,13 +12,9 @@ const userdata = new mongoose.Schema(
     discount: {
       type: Number,
     },
-    type: {
+    position: {
       type: String,
-      enum: [
-        "Advertisement",
-        "Manufacturer Registration",
-        "Member Registration",
-      ],
+      enum: ["TOP", "BOTTOM", "LEFT SIDE", "RIGHT SIDE"],
     },
     name: {
       type: String,
@@ -32,23 +28,9 @@ const userdata = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
-    businessCategory: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "business_category",
-    },
-    validity: {
-      type: Number,
-      enum: [3, 6, 12],
-    },
-    amount: {
-      type: Number,
-    },
-    discount: {
-      type: Number,
-    },
   },
 
   { timestamps: true }
 );
 
-module.exports = new mongoose.model("package", userdata);
+module.exports = new mongoose.model("advertisementPackage", userdata);
