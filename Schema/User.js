@@ -52,6 +52,8 @@ const userdata = new mongoose.Schema(
     email: { type: String, unique: true },
     mobile: {
       type: Number,
+      unique: true,
+      required: [true, "Mobile number required"],
     },
     deskId: {
       type: mongoose.Schema.Types.ObjectId,

@@ -9,6 +9,7 @@ const create = async (req, res, next) => {
     let fields = { number, user };
     if (!validator.validateField(fields, res)) return null;
     let checkEmployee = await UserSchema.findById(user).populate("deskId");
+    if (!checkEmployee) return SendFail(res, "Incorrect user id");
     if (checkEmployee.deskId) {
       return SendSuccess(
         res,
