@@ -1,5 +1,6 @@
 const { SendSuccess, SendError, SendFail } = require("../Middlewares/Response");
 const { validateField } = require("../Middlewares/Validator");
+const ChatSchema = require("../Schema/Chat.Schema");
 const DefaultSchema = require("../Schema/Chat.Schema");
 const MessageSchema = require("../Schema/Message.Schema");
 
