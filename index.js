@@ -27,6 +27,7 @@ const NewsRoutes = require("./Routes/News.Routes.js");
 const userRoutes = require("./Routes/UserRoutes");
 const BlogRoutes = require("./Routes/BlogRoutes");
 const FaqRoutes = require("./Routes/FaqRoutes");
+const ChatRoutes = require("./Routes/Chat.Routes.js");
 const SubCAtegory = require("./Routes/SubCategoriesRoutes");
 // ----------------------------------------------------------------------------------------------
 
@@ -75,6 +76,7 @@ app.use("/advertisement", Advertisement);
 app.use("/News", NewsRoutes);
 
 app.use("/auth", authRoutes);
+app.use("/chat", ChatRoutes);
 app.use("/user", userRoutes);
 app.use("/blog", BlogRoutes);
 // app.use("/faq", FaqRoutes);
