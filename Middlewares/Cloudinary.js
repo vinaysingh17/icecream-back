@@ -7,10 +7,15 @@ const cloudinary = require("cloudinary").v2;
 //   api_secret: "NuIFTBxV8vTTwiUZySsZO-_IEjU",
 // });
 // ddd
+// cloudinary.config({
+//   cloud_name: "ddyb5yir9",
+//   api_key: "524146564425286",
+//   api_secret: "IeyLRrfcDTq60x3om7EPm8fthmk",
+// });
 cloudinary.config({
-  cloud_name: "ddyb5yir9",
-  api_key: "524146564425286",
-  api_secret: "IeyLRrfcDTq60x3om7EPm8fthmk",
+  cloud_name: "djkvwhl4w",
+  api_key: "188614786747447",
+  api_secret: "NuIFTBxV8vTTwiUZySsZO-_IEjU",
 });
 
 // Upload
