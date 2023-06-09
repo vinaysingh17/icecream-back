@@ -38,7 +38,7 @@ const userdata = new mongoose.Schema(
     businessSubCategory: [
       {
         type: ObjectId,
-        ref: "product_category",
+        ref: "business_subcategory",
       },
     ],
     password: String,

@@ -7,7 +7,10 @@ const uploadOnCloudinary = require("../Middlewares/Cloudinary");
 
 const getUser = async (req, res, next) => {
   try {
-    const user = await User.find(req.query);
+    const user = await User.find(req.query)
+      .populate("businessCategory")
+      .populate("businessSubCategory")
+      .populate("deskId");
     if (user.length == 0) {
       return res
         .status(400)
