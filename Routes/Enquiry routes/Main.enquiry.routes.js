@@ -10,7 +10,7 @@ const router = express.Router();
 const upload = require("../../Middlewares/Multer");
 
 router.post("/create", upload.fields([{ name: "image", maxCount: 1 }]), create);
-router.get("/get", read);
+router.post("/get", read);
 router.delete("/delete/:id", Delete);
 
 module.exports = router;

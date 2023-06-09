@@ -25,7 +25,22 @@ const create = async (req, res, next) => {
 
 const read = async (req, res, next) => {
   try {
-    const data = await MainEnquirySchema.find(req.query)
+    let filter = req.query;
+    console.log(req.body);
+    if (req.body.productCategory) {
+      filter = {
+        ...filter,
+        productCategory: { $in: req.body.productCategory },
+      };
+    }
+    if (req.body.productSubCategory) {
+      filter = {
+        ...filter,
+        productSubCategory: { $in: req.body.productSubCategory },
+      };
+    }
+
+    const data = await MainEnquirySchema.find(filter)
       .sort({ number: -1 })
       .populate("buyer")
       .populate("productCategory")

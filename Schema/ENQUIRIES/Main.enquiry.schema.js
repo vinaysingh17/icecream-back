@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const { ObjectId } = mongoose.Schema.Types;
 const refer = (ref) => ({ type: ObjectId, ref });
 const userdata = new mongoose.Schema(
-  {
+  {   
     buyer: refer("user"),
     productCategory: refer("product_category"),
     productSubCategory: refer("product_subcategory"),
@@ -26,7 +26,6 @@ const userdata = new mongoose.Schema(
       default: "Pending for reply",
     },
     isDeleted: { type: Boolean, default: false },
-
     forwardedToMember: {
       type: ObjectId,
       ref: "user",
