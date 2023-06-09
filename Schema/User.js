@@ -16,7 +16,7 @@ const userdata = new mongoose.Schema(
     image: String,
     organizationName: {
       type: String,
-      // required: [true, "Organization name is requried"],
+      // required: [true, "Organization name is requried"],dd
     },
     mobile2: Number,
     address1: { type: String },
