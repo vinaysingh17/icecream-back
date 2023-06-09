@@ -24,6 +24,11 @@ const userdata = new mongoose.Schema(
     address3: String,
     country: strReq,
     state: strReq,
+    productCategory: {
+      type: ObjectId,
+      ref: "product_category",
+    },
+
     city: strReq,
     landMark: strReq,
     gstNumber: strReq,

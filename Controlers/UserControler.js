@@ -10,6 +10,7 @@ const getUser = async (req, res, next) => {
     const user = await User.find(req.query)
       .populate("businessCategory")
       .populate("businessSubCategory")
+      .populate("productCategory")
       .populate("deskId");
     if (user.length == 0) {
       return res
