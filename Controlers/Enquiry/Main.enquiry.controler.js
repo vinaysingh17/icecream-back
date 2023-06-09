@@ -10,7 +10,7 @@ const create = async (req, res, next) => {
   const { number, user } = req.body;
   try {
     // return null;
-    // console.log(fields, "<< these are fields");
+    // console.log(fields, "<< these are fields");j
     // if (!validator.validateField(fields, res)) return null;
     const savedData = await MainEnquirySchema.create({
       ...req.body,
