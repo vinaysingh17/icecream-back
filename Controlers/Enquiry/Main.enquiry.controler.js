@@ -27,6 +27,12 @@ const read = async (req, res, next) => {
   try {
     let filter = req.query;
     console.log(req.body);
+    if (req.body.buyer) {
+      filter = {
+        ...filter,
+        buyer: req.body.buyer,
+      };
+    }
     if (req.body.productCategory) {
       filter = {
         ...filter,
@@ -41,7 +47,7 @@ const read = async (req, res, next) => {
     }
 
     const data = await MainEnquirySchema.find(filter)
-      .sort({ number: -1 })
+      .sort({ createdAt: -1 })
       .populate("buyer")
       .populate("productCategory")
       .populate("productSubCategory")

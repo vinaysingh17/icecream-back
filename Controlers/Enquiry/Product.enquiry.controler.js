@@ -35,7 +35,7 @@ const create = async (req, res, next) => {
 const read = async (req, res, next) => {
   try {
     const data = await ProductEnquiry.find(req.query)
-      .sort({ number: -1 })
+         .sort({ createdAt: -1 })
       .populate("product")
       .populate("buyer")
       .populate("owner")

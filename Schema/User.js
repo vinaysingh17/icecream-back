@@ -34,6 +34,10 @@ const userdata = new mongoose.Schema(
     gstNumber: strReq,
     employeeNumber: numReq,
     turnover: numReq,
+    verified:{
+      type:Boolean,
+      default:false,
+    },
     businessCategory: [
       {
         type: ObjectId,
