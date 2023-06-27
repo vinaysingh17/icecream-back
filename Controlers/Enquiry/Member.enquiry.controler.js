@@ -15,7 +15,7 @@ const create = async (req, res, next) => {
       ...req.body,
     });
 
-    SendSuccess(res, "Category Created", savedData);
+    SendSuccess(res, "Enquiry Created", savedData);
   } catch (e) {
     console.log(e);
     SendError(res, e);

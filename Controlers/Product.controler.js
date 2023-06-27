@@ -19,7 +19,7 @@ const create = async (req, res, next) => {
       image: uri,
     });
 
-    SendSuccess(res, "Category Created", savedData);
+    SendSuccess(res, "Product Created", savedData);
   } catch (e) {
     console.log(e);
     SendError(res, e);

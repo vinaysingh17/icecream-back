@@ -33,25 +33,24 @@ const Create = async (req, res, next) => {
         createdAt: new Date(),
       });
 
-      const savedData = await ChatSchema.create({
-        ...req.body,
-        messages: message._id,
-      });
+     
 
-      //   let SavedData = await DefaultSchema.findByIdAndUpdate(
-      //     chatId,
-      //     {
-      //       $push: {
-      //         messages: {
-      //           msg,
-      //           writer,
-      //           createdAt: new Date(),
-      //         },
-      //       },
-      //     },
-      //     { new: true }
-      //   );
-      SendSuccess(res, "MEssage Sent", savedData);
+      // const savedData = await ChatSchema.findByIdAndUpdate(chatId,{
+      //   messages: message._id,
+      //   updatedAt: new Date(),
+
+      // });
+
+        let saveData = await DefaultSchema.findByIdAndUpdate(
+          chatId,
+          {
+            $push: {
+              messages: message._id,
+            },
+          },
+          { new: true }
+        );
+      SendSuccess(res, "MEssage Sent", saveData);
     }
   } catch (e) {
     console.log(e);
@@ -87,6 +86,7 @@ const MyChat = async (req, res) => {
     //   filter = { ...filter, project };
     // }
     const data = await DefaultSchema.find(filter)
+    .sort({updatedAt:-1})
       .populate("user1", "fullName lastName mobile email")
       .populate("user2", "fullName lastName mobile email")
       .populate("mainEnquiry")
