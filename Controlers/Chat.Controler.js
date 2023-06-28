@@ -87,8 +87,8 @@ const MyChat = async (req, res) => {
     // }
     const data = await DefaultSchema.find(filter)
     .sort({updatedAt:-1})
-      .populate("user1", "fullName lastName mobile email")
-      .populate("user2", "fullName lastName mobile email")
+      .populate("user1")
+      .populate("user2")
       .populate("mainEnquiry")
       .populate("memberEnquiry")
       .populate("productEnquiry")
