@@ -61,8 +61,8 @@ const Create = async (req, res, next) => {
 const Read = async (req, res, next) => {
   try {
     const data = await DefaultSchema.find(req.query)
-      .populate("user1", "firstName lastName email number")
-      .populate("user2", "firstName lastName email number")
+      .populate("user1")
+      .populate("user2")
       .populate("mainEnquiry")
       .populate("productEnquiry")
       .populate("memberEnquiry")
