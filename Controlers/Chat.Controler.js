@@ -77,11 +77,16 @@ const Read = async (req, res, next) => {
 
 const MyChat = async (req, res) => {
   try {
-    const { userId } = req.query;
+    const { userId,chatId } = req.query;
     if (!userId) return SendFail(res, "userId is required");
+    // if (!userId) return SendFail(res, "userId is required");
     let filter = {
       $or: [{ user1: userId }, { user2: userId }],
     };
+    if(chatId){
+
+       filter = {...filter,_id:chatId};
+    }
     // if (project) {
     //   filter = { ...filter, project };
     // }
