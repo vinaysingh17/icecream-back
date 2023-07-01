@@ -7,9 +7,24 @@ const MessageSchema = require("../Schema/Message.Schema");
 const Create = async (req, res, next) => {
   try {
     console.log(req.body, "<<<thisisbodydata");
-    const { user1, user2, chatId, msg, writer } = req.body;
+    const { user1, user2, msg, writer } = req.body;
+    let chatId=req.body.chatId
+    if(!chatId){
+    let filter =  {
+       $or: [
+       { $and: [{ user1: user1 }, { user2: user2 }] },
+         { $and: [{ user1: user2 }, { user2: user1 }] },
+       ],
+     }
+
+    let data=await DefaultSchema.find(filter)
+    if(data?.length){
+    chatId=data[0]?._id
+    }
+  }
 
     if (!chatId) {
+
       let fields = { user1, user2, msg, writer };
       if (!validateField(fields, res)) return null;
       let message = await MessageSchema.create({
@@ -35,12 +50,7 @@ const Create = async (req, res, next) => {
 
      
 
-      // const savedData = await ChatSchema.findByIdAndUpdate(chatId,{
-      //   messages: message._id,
-      //   updatedAt: new Date(),
-
-      // });
-
+    
         let saveData = await DefaultSchema.findByIdAndUpdate(
           chatId,
           {
@@ -67,7 +77,6 @@ const Read = async (req, res, next) => {
       .populate("productEnquiry")
       .populate("memberEnquiry")
       .populate("messages");
-
     SendSuccess(res, " Data Fetched", data);
   } catch (e) {
     console.log(e);
